@@ -1,0 +1,33 @@
+.image {
+  display: inline-block;
+  width: 50vw;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.text {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 20px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.view {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.results {
+  width: 30%;
+}
+
+body {
+  padding: 48px;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeScript page</title>
+    <!-- <script src="dist/app.js" defer></script>
+    <script src="dist/buttonAction.js" defer></script> -->
+    <link href="./index.css" rel="stylesheet">
+  </head>
+  <!-- Load TensorFlow.js. This is required to use MobileNet. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"> </script>
+<!-- Load the MobileNet model. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"> </script>
+
+<!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
+<!-- <img id="img" src="./images/45201.jpeg"></img> -->
+<div class="controls">
+  <div class="selector">
+    <label for="selector">Image: </label>
+    <select id="selector" name="select">
+    <!--Supplement an id here instead of using 'name'-->
+    <option value="images/45201.jpeg" selected>Cat 1</option>
+    <option value="images/177809.jpeg">Cat 2</option>
+    <option value="images/991831.webp">Cat 3</option>
+    <option value="images/1314550.jpeg">Cat 4</option>
+    <option value="images/3687770.jpeg">Dog 1</option>
+    <option value="images/895259.webp">Dog 2</option>
+    <option value="images/kingfisher-2046453_960_720.jpg">Bird 1</option>
+    <option value="images/cat-339400_960_720.jpg">Cat 5</option>
+    <option value="images/2101658_960_720.jpg">Dog 3</option>
+  </select>
+</div>
+  <div class="selector">
+    <label for="version">Model version: </label>
+    <select id="version" name="version">
+      <option value='1' selected>version 1</option>
+      <option value='2'>version 2</option>
+    </select>
+  </div>
+<button id="button" type="submit">Classify Me</button>
+</div>
+<div class="view">
+  <img id="img" class="image" src="./images/45201.jpeg"></img>
+  <div class="results"><h2>Result:</h2>
+    <ul id="display" class="text"></ul></div>
+</div>
+
+<!-- Place your code in the script tag below. You can also use an external .js file -->
+<script>
+  // Notice there is no 'import' statement. 'mobilenet' and 'tf' is
+  // available on the index-page because of the script tag above.
+
+  const img = document.getElementById('img');
+  const display = document.getElementById('display');
+  const button = document.getElementById('button');
+  const selector = document.getElementById('selector');
+  const version = document.getElementById('version');
+  let v = 1;
+
+  button.addEventListener('click', run);
+  selector.addEventListener('change', (e) => {
+    display.innerHTML='';
+    img.src = e.target.value});
+
+  version.addEventListener('change', (e) => {
+    v = parseInt(e.target.value);
+  })
+
+  // Load the model.
+  async function run() {
+    mobilenet.load(v).then(model => {
+    // Classify the image.
+    model.classify(img).then(predictions => {
+      console.log('Predictions: ');
+      console.log(predictions);
+      predictions.forEach(element => display.insertAdjacentHTML('beforeend', `<li>${element.className}</li>`));
+    });
+  });
+  }
+</script>
+    
+  </body>
+</html>
