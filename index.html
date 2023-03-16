@@ -3,23 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TypeScript page</title>
-    <!-- <script src="dist/app.js" defer></script>
-    <script src="dist/buttonAction.js" defer></script> -->
+    <title>TensorFlow MobileNet model</title>
     <link href="./index.css" rel="stylesheet">
   </head>
   <!-- Load TensorFlow.js. This is required to use MobileNet. -->
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"> </script>
 <!-- Load the MobileNet model. -->
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"> </script>
-
-<!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
-<!-- <img id="img" src="./images/45201.jpeg"></img> -->
 <div class="controls">
   <div class="selector">
     <label for="selector">Image: </label>
     <select id="selector" name="select">
-    <!--Supplement an id here instead of using 'name'-->
     <option value="images/45201.jpeg" selected>Cat 1</option>
     <option value="images/177809.jpeg">Cat 2</option>
     <option value="images/991831.webp">Cat 3</option>
@@ -45,8 +39,6 @@
   <div class="results"><h2>Result:</h2>
     <ul id="display" class="text"></ul></div>
 </div>
-
-<!-- Place your code in the script tag below. You can also use an external .js file -->
 <script>
   // Notice there is no 'import' statement. 'mobilenet' and 'tf' is
   // available on the index-page because of the script tag above.
